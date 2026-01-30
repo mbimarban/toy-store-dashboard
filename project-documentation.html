@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toy Store Dashboard - Project Documentation</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #0F172A;
+            background: #F8FAFC;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2B9FED 0%, #9B6FED 50%, #F76BB7 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .toc h2 {
+            color: #1E3A8A;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            padding: 0.5rem 0;
+        }
+
+        .toc a {
+            color: #3B82F6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #8B5CF6;
+        }
+
+        /* Section Styles */
+        section {
+            background: white;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #1E3A8A;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3B82F6;
+        }
+
+        h3 {
+            color: #8B5CF6;
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        h4 {
+            color: #3B82F6;
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: #1E293B;
+            color: #E2E8F0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        code {
+            background: #E0E7FF;
+            color: #1E3A8A;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            color: #334155;
+        }
+
+        /* Step Boxes */
+        .step-box {
+            background: linear-gradient(135deg, #EFF6FF 0%, #F5F3FF 100%);
+            border-left: 4px solid #3B82F6;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: #DBEAFE;
+            border-left: 4px solid #3B82F6;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .success-box {
+            background: #D1FAE5;
+            border-left: 4px solid #10B981;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+        }
+
+        th {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        tr:hover {
+            background: #F8FAFC;
+        }
+
+        /* Footer */
+        footer {
+            background: #1E3A8A;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            pre {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Toy Store Dashboard</h1>
+        <p class="subtitle">Complete Project Documentation - Step by Step Build Process</p>
+    </header>
+
+    <div class="container">
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2>📑 Table of Contents</h2>
+            <ul>
+                <li><a href="#overview">1. Project Overview</a></li>
+                <li><a href="#dataset">2. Dataset Preparation</a></li>
+                <li><a href="#power-pivot">3. Power Pivot Setup</a></li>
+                <li><a href="#dax">4. DAX Measures Creation</a></li>
+                <li><a href="#sales-dashboard">5. Sales Dashboard Design</a></li>
+                <li><a href="#procurement-dashboard">6. Procurement Dashboard Design</a></li>
+                <li><a href="#design-system">7. Design System & Color Palette</a></li>
+                <li><a href="#insights">8. Key Insights & Findings</a></li>
+                <li><a href="#lessons">9. Lessons Learned</a></li>
+            </ul>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <section id="overview">
+            <h2>1️⃣ Project Overview</h2>
+            
+            <h3>🎯 Project Goal</h3>
+            <p>Create a professional Business Intelligence dashboard system in Microsoft Excel that demonstrates advanced data modeling, DAX calculations, and professional visualization techniques for a toy store retail business.</p>
+
+            <h3>📊 What We Built</h3>
+            <ul>
+                <li><strong>2 Interactive Dashboards:</strong> Sales Dashboard & Procurement Dashboard</li>
+                <li><strong>Data Model:</strong> Star Schema with 4 tables and relational integrity</li>
+                <li><strong>10 Custom DAX Measures:</strong> Revenue, Cost, Profit, Margin, Inventory metrics</li>
+                <li><strong>Professional Design:</strong> Custom gradient color palette, KPI cards, charts</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>💡 Key Achievement:</strong> Transformed 245,800 raw transaction records into actionable business intelligence with Power BI-level visualization quality in Excel.
+            </div>
+
+            <h3>🛠️ Tools & Technologies</h3>
+            <table>
+                <tr>
+                    <th>Technology</th>
+                    <th>Usage</th>
+                </tr>
+                <tr>
+                    <td><strong>Microsoft Excel</strong></td>
+                    <td>Primary platform for dashboard creation</td>
+                </tr>
+                <tr>
+                    <td><strong>Power Pivot</strong></td>
+                    <td>In-memory data model with relational tables</td>
+                </tr>
+                <tr>
+                    <td><strong>DAX</strong></td>
+                    <td>Custom calculated measures for KPIs</td>
+                </tr>
+                <tr>
+                    <td><strong>PivotTables</strong></td>
+                    <td>Dynamic data aggregation from Power Pivot</td>
+                </tr>
+                <tr>
+                    <td><strong>Advanced Charting</strong></td>
+                    <td>Custom formatted visualizations with gradients</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 2: Dataset -->
+        <section id="dataset">
+            <h2>2️⃣ Dataset Preparation</h2>
+
+            <h3>📁 Data Sources</h3>
+            <p>We created synthetic realistic data for a toy store retail business spanning 1 full year (2025).</p>
+
+            <h4>Table 1: sales.csv (Fact Table)</h4>
+            <pre>
+Sale_ID, Date, Store_ID, Product_ID, Units
+206, 2025-01-02, 1, 130, 1
+213, 2025-01-03, 1, 130, 1
+...
+Total Records: 245,800 transactions
+            </pre>
+            <ul>
+                <li><strong>Sale_ID:</strong> Unique transaction identifier</li>
+                <li><strong>Date:</strong> Transaction date (full year 2025)</li>
+                <li><strong>Store_ID:</strong> Store location identifier (1-120)</li>
+                <li><strong>Product_ID:</strong> Product identifier (1-180)</li>
+                <li><strong>Units:</strong> Quantity sold</li>
+            </ul>
+
+            <h4>Table 2: products.csv (Dimension Table)</h4>
+            <pre>
+Product_ID, Product_Name, Product_Category, Product_Cost, Product_Price
+1, Classic Teddy Bear, Plush, 8.50, 19.99
+2, Mega Board Game, Board Games, 15.00, 34.99
+...
+Total Records: 180 products
+            </pre>
+            <ul>
+                <li><strong>180 unique products</strong> across 16 categories</li>
+                <li><strong>Categories:</strong> Building Blocks, Action Figures, Arts & Crafts, Board Games, Dolls, Puzzles, etc.</li>
+                <li><strong>Price range:</strong> $5 - $50</li>
+            </ul>
+
+            <h4>Table 3: stores.csv (Dimension Table)</h4>
+            <pre>
+Store_ID, Store_Name, Store_City, Store_Location, Store_Open_Date
+1, Downtown Store, New York, Urban, 2020-01-15
+2, Riverside Mall, Los Angeles, Suburban, 2019-03-22
+...
+Total Records: 120 stores
+            </pre>
+            <ul>
+                <li><strong>120 store locations</strong> across major US cities</li>
+                <li><strong>Location types:</strong> Urban, Suburban, Rural</li>
+                <li><strong>Store age:</strong> 2018-2024 opening dates</li>
+            </ul>
+
+            <h4>Table 4: inventory.csv (Fact Table)</h4>
+            <pre>
+Store_ID, Product_ID, Stock_On_Hand
+1, 34, 26
+1, 150, 26
+...
+Total Records: 14,143 inventory records
+            </pre>
+            <ul>
+                <li><strong>Current stock levels</strong> for each store-product combination</li>
+                <li><strong>Stock range:</strong> 0-50 units per product per store</li>
+            </ul>
+
+            <div class="step-box">
+                <span class="step-number">1</span>
+                <strong>Data Loading Process:</strong>
+                <ol>
+                    <li>Created 4 CSV files with realistic retail data</li>
+                    <li>Loaded each CSV into Excel as separate worksheets</li>
+                    <li>Converted each range to Excel Table (Insert → Table)</li>
+                    <li>Named tables: sales, products, stores, inventory</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 3: Power Pivot -->
+        <section id="power-pivot">
+            <h2>3️⃣ Power Pivot Setup</h2>
+
+            <h3>🔄 Enabling Power Pivot</h3>
+            <div class="step-box">
+                <span class="step-number">1</span>
+                <strong>Enable Power Pivot Add-in:</strong>
+                <ol>
+                    <li>File → Options → Add-ins</li>
+                    <li>Manage: COM Add-ins → Go</li>
+                    <li>Check ☑ Microsoft Power Pivot for Excel</li>
+                    <li>OK → Power Pivot tab appears in ribbon</li>
+                </ol>
+            </div>
+
+            <h3>📊 Building the Data Model</h3>
+            <div class="step-box">
+                <span class="step-number">2</span>
+                <strong>Add Tables to Data Model:</strong>
+                <ol>
+                    <li>For each table: Select table → Power Pivot → Add to Data Model</li>
+                    <li>Power Pivot window opens showing all 4 tables</li>
+                    <li>Tables loaded into in-memory columnar database</li>
+                </ol>
+            </div>
+
+            <h3>🔗 Creating Relationships (Star Schema)</h3>
+            <p>We created a <strong>Star Schema</strong> design with fact tables (sales, inventory) connected to dimension tables (products, stores).</p>
+
+            <div class="step-box">
+                <span class="step-number">3</span>
+                <strong>Define Relationships:</strong>
+                <pre>
+Relationship 1: sales[Product_ID] → products[Product_ID] (Many-to-One)
+Relationship 2: sales[Store_ID] → stores[Store_ID] (Many-to-One)
+Relationship 3: inventory[Product_ID] → products[Product_ID] (Many-to-One)
+Relationship 4: inventory[Store_ID] → stores[Store_ID] (Many-to-One)
+                </pre>
+                <p><strong>How to create:</strong></p>
+                <ol>
+                    <li>Power Pivot → Diagram View</li>
+                    <li>Drag Product_ID from sales to products</li>
+                    <li>Drag Store_ID from sales to stores</li>
+                    <li>Repeat for inventory table</li>
+                    <li>Verify: All relationships show 1-to-Many cardinality</li>
+                </ol>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Result:</strong> Fully normalized Star Schema with bi-directional filtering enabled for analysis.
+            </div>
+
+            <h3>⚠️ Common Issues & Solutions</h3>
+            <div class="warning-box">
+                <strong>Issue 1:</strong> Text values in numeric columns (e.g., "1.5" instead of 1.5)<br>
+                <strong>Solution:</strong> Power Query → Transform → Data Type → Decimal Number<br><br>
+                <strong>Issue 2:</strong> Relationships not auto-detected<br>
+                <strong>Solution:</strong> Manually create in Diagram View, ensure matching column names
+            </div>
+        </section>
+
+        <!-- Section 4: DAX -->
+        <section id="dax">
+            <h2>4️⃣ DAX Measures Creation</h2>
+
+            <p>We created <strong>10 custom DAX measures</strong> to calculate key business metrics. All measures were created in the Power Pivot window.</p>
+
+            <h3>📈 Sales Measures</h3>
+
+            <h4>1. Total Revenue</h4>
+            <pre>Total Revenue:=SUMX(sales, sales[Units] * RELATED(products[Product_Price]))</pre>
+            <p><strong>Logic:</strong> For each row in sales, multiply Units by Product_Price (from related products table), then sum all results.</p>
+            <p><strong>Result:</strong> $9,862,933 total revenue</p>
+
+            <h4>2. Total Cost</h4>
+            <pre>Total Cost:=SUMX(sales, sales[Units] * RELATED(products[Product_Cost]))</pre>
+            <p><strong>Logic:</strong> Similar to revenue but uses Product_Cost instead of Product_Price.</p>
+            <p><strong>Result:</strong> $5,556,827 total cost</p>
+
+            <h4>3. Total Profit</h4>
+            <pre>Total Profit:=[Total Revenue] - [Total Cost]</pre>
+            <p><strong>Logic:</strong> Simple subtraction of two existing measures.</p>
+            <p><strong>Result:</strong> $4,306,106 total profit</p>
+
+            <h4>4. Margin %</h4>
+            <pre>Margin %:=DIVIDE([Total Profit], [Total Revenue], 0)</pre>
+            <p><strong>Logic:</strong> Profit divided by Revenue, with 0 as default if division by zero.</p>
+            <p><strong>Result:</strong> 43.7% profit margin</p>
+
+            <h4>5. Units Sold</h4>
+            <pre>Units Sold:=SUM(sales[Units])</pre>
+            <p><strong>Logic:</strong> Simple sum of Units column in sales table.</p>
+            <p><strong>Result:</strong> 567,270 units sold</p>
+
+            <h4>6. Number of Transactions</h4>
+            <pre>Number of Transactions:=COUNTROWS(sales)</pre>
+            <p><strong>Logic:</strong> Count all rows in sales table.</p>
+            <p><strong>Result:</strong> 245,800 transactions</p>
+
+            <h3>📦 Inventory Measures</h3>
+
+            <h4>7. Total Stock Units</h4>
+            <pre>Total Stock Units:=SUM(inventory[Stock_On_Hand])</pre>
+            <p><strong>Logic:</strong> Sum of Stock_On_Hand column in inventory table.</p>
+            <p><strong>Result:</strong> 338,993 units in stock</p>
+
+            <h4>8. Stock Value</h4>
+            <pre>Stock Value:=SUMX(inventory, inventory[Stock_On_Hand] * RELATED(products[Product_Cost]))</pre>
+            <p><strong>Logic:</strong> For each inventory row, multiply stock quantity by product cost.</p>
+            <p><strong>Result:</strong> $3,121,214 in inventory value</p>
+
+            <h4>9. Stock to Sales Ratio</h4>
+            <pre>Stock_to_Sales_Ratio:=DIVIDE([Total Stock Units], [Units Sold], 0)</pre>
+            <p><strong>Logic:</strong> Stock divided by sales to show inventory coverage.</p>
+            <p><strong>Result:</strong> 0.598 (59.8% stock-to-sales ratio)</p>
+
+            <h4>10. Days of Inventory</h4>
+            <pre>Days_of_Inventory:=DIVIDE([Total Stock Units], [Units Sold], 0) * 365</pre>
+            <p><strong>Logic:</strong> Stock-to-sales ratio multiplied by 365 days.</p>
+            <p><strong>Result:</strong> 218 days of inventory (7+ months of stock!)</p>
+
+            <div class="info-box">
+                <strong>💡 DAX Best Practices Used:</strong>
+                <ul>
+                    <li><strong>SUMX vs SUM:</strong> Used SUMX for row-by-row calculations with RELATED()</li>
+                    <li><strong>DIVIDE():</strong> Always used instead of / to handle division by zero</li>
+                    <li><strong>Measure References:</strong> Built complex measures from simpler ones</li>
+                    <li><strong>Descriptive Names:</strong> Clear, readable measure names with underscores</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 5: Sales Dashboard -->
+        <section id="sales-dashboard">
+            <h2>5️⃣ Sales Dashboard Design</h2>
+
+            <h3>🎨 Dashboard Architecture</h3>
+            <p>We used a <strong>layered architecture</strong> with separate sheets for calculations and presentation:</p>
+            <ul>
+                <li><strong>Data Sheet:</strong> PivotTables pulling from Power Pivot</li>
+                <li><strong>Sales Dashboard Sheet:</strong> Visual layer with shapes, charts, and formulas linking to Data</li>
+            </ul>
+
+            <h3>📊 Components Built</h3>
+
+            <h4>1. Gradient Header (Rows 1-5)</h4>
+            <div class="step-box">
+                <span class="step-number">1</span>
+                <strong>Create Gradient Background:</strong>
+                <ol>
+                    <li>Insert → Shapes → Rounded Rectangle (cover A1:P5)</li>
+                    <li>Format Shape → Fill → Gradient Fill</li>
+                    <li>Type: Linear, Direction: Vertical (Down)</li>
+                    <li>Gradient Stops:
+                        <ul>
+                            <li>Stop 1 (0%): #2B9FED (light blue)</li>
+                            <li>Stop 2 (50%): #9B6FED (purple)</li>
+                            <li>Stop 3 (100%): #F76BB7 (pink)</li>
+                        </ul>
+                    </li>
+                    <li>Send to Back (so text is visible)</li>
+                </ol>
+            </div>
+
+            <h4>2. Logo & Title</h4>
+            <ul>
+                <li><strong>Logo:</strong> Toy_Store_logo.png inserted in A2:B5</li>
+                <li><strong>Title:</strong> "SALES DASHBOARD - 2025" in merged cells C2:M2</li>
+                <li><strong>Font:</strong> Segoe UI Bold, 24pt, White color</li>
+            </ul>
+
+            <h4>3. KPI Cards (4 cards, Rows 7-10)</h4>
+            <div class="step-box">
+                <span class="step-number">2</span>
+                <strong>Create KPI Cards with Shapes:</strong>
+                <p><strong>Why shapes?</strong> Excel textboxes don't support formulas, so we used shapes as backgrounds with cells containing formulas on top.</p>
+                
+                <p><strong>Card 1 - Total Revenue (B7:D10):</strong></p>
+                <ol>
+                    <li>Insert Rounded Rectangle shape</li>
+                    <li>Fill: #2B9FED (blue), No Line</li>
+                    <li>Shadow: Outer, Offset Bottom Right</li>
+                    <li>Label in B8: "💰 Total Revenue" (white, bold)</li>
+                    <li>Formula in C10:
+                        <pre>="$"&ROUND(GETPIVOTDATA("[Measures].[Total Revenue]",Data!$B$2)/1000000,2)&"M"</pre>
+                    </li>
+                    <li>Result displays: $9.86M</li>
+                </ol>
+
+                <p><strong>Cards 2-4:</strong> Repeated same process with different colors and measures:</p>
+                <ul>
+                    <li><strong>Card 2 - Cost:</strong> #9B6FED (purple), $5.56M</li>
+                    <li><strong>Card 3 - Profit:</strong> #C77DFF (light purple), $4.31M</li>
+                    <li><strong>Card 4 - Margin:</strong> #F76BB7 (pink), 43.7%</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Important Lesson:</strong> Polish Excel uses semicolons (;) instead of commas (,) in formulas. Custom number formats didn't work, so we used TEXT() and ROUND() functions instead.
+            </div>
+
+            <h4>4. Monthly Revenue Trend - Line Chart (B12:G25)</h4>
+            <div class="step-box">
+                <span class="step-number">3</span>
+                <strong>Create Line Chart:</strong>
+                <ol>
+                    <li><strong>Data Sheet:</strong> Create PivotTable
+                        <ul>
+                            <li>Rows: Date (grouped by Month)</li>
+                            <li>Values: Total Revenue</li>
+                            <li>Result: 12 months (Jan-Dec) with revenue per month</li>
+                        </ul>
+                    </li>
+                    <li><strong>Insert Chart:</strong> Line with Markers</li>
+                    <li><strong>Format Chart Area:</strong>
+                        <ul>
+                            <li>Fill: #3B82F6 (blue)</li>
+                            <li>Rounded corners</li>
+                        </ul>
+                    </li>
+                    <li><strong>Format Line:</strong> White (#FFFFFF), 3pt width</li>
+                    <li><strong>Format Markers:</strong> White circles</li>
+                    <li><strong>Axes:</strong> Removed Y-axis (minimalist design), White X-axis labels</li>
+                    <li><strong>Title:</strong> "Monthly Revenue Trend" (white, bold, 16pt)</li>
+                </ol>
+            </div>
+
+            <h4>5. Top 10 Best-Selling Products - Bar Chart (H12:R25)</h4>
+            <div class="step-box">
+                <span class="step-number">4</span>
+                <strong>Create Horizontal Bar Chart:</strong>
+                <ol>
+                    <li><strong>Data Sheet:</strong> Create PivotTable
+                        <ul>
+                            <li>Rows: Product_Name</li>
+                            <li>Values: Total Revenue</li>
+                            <li>Sort: Largest to Smallest</li>
+                            <li>Filter: Top 10 items</li>
+                        </ul>
+                    </li>
+                    <li><strong>Insert Chart:</strong> Clustered Bar (horizontal)</li>
+                    <li><strong>Format Bars:</strong> Gradient Fill
+                        <ul>
+                            <li>Stop 1 (0%): #9B6FED (purple)</li>
+                            <li>Stop 2 (100%): #F76BB7 (pink)</li>
+                            <li>Direction: Linear Right</li>
+                        </ul>
+                    </li>
+                    <li><strong>Reverse Categories:</strong> Largest on top</li>
+                    <li><strong>Data Labels:</strong> White text at end of bars</li>
+                    <li><strong>Background:</strong> #3B82F6 (blue)</li>
+                </ol>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Final Result:</strong> Professional sales dashboard with gradient design, 4 KPI cards showing key metrics, trend chart showing consistent monthly revenue, and top 10 products bar chart highlighting best sellers.
+            </div>
+        </section>
+
+        <!-- Section 6: Procurement Dashboard -->
+        <section id="procurement-dashboard">
+            <h2>6️⃣ Procurement Dashboard Design</h2>
+
+            <h3>🎯 Purpose</h3>
+            <p>Create a second dashboard focused on <strong>inventory management and procurement analytics</strong> to complement the sales view.</p>
+
+            <h3>📦 Components Built</h3>
+
+            <h4>1. Header & KPI Cards</h4>
+            <div class="step-box">
+                <span class="step-number">1</span>
+                <strong>Copy Header from Sales Dashboard:</strong>
+                <ol>
+                    <li>Copied gradient header and logo</li>
+                    <li>Changed title to: "PROCUREMENT DASHBOARD - 2025"</li>
+                    <li>Copied 4 KPI card shapes</li>
+                    <li>Updated metrics to procurement-specific:
+                        <ul>
+                            <li><strong>Card 1:</strong> 📦 Total Stock Units - 339K</li>
+                            <li><strong>Card 2:</strong> 💰 Stock Value - $3.12M</li>
+                            <li><strong>Card 3:</strong> 📊 Stock/Sales Ratio - 59.8%</li>
+                            <li><strong>Card 4:</strong> ⏱️ Days of Inventory - 218</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Design Insight:</strong> Days of Inventory = 218 is HIGH! Standard retail target is 60-90 days. This indicates potential overstock issue worth investigating.
+            </div>
+
+            <h4>2. Stock Distribution by Category - Donut Chart</h4>
+            <div class="step-box">
+                <span class="step-number">2</span>
+                <strong>Create Donut Chart (Top 5 + Others):</strong>
+                <ol>
+                    <li><strong>Data Sheet PivotTable:</strong>
+                        <ul>
+                            <li>Rows: Product_Category</li>
+                            <li>Values: Total Stock Units</li>
+                            <li>Filter: Top 5 categories</li>
+                            <li>Manual addition: Created "Others" row with remaining stock (189,674 units)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Why Top 5 + Others?</strong> 16 categories in donut = unreadable. Simplified to 6 segments.</li>
+                    <li><strong>Insert Chart:</strong> Donut Chart</li>
+                    <li><strong>Custom Colors:</strong>
+                        <ul>
+                            <li>Arts & Crafts: #3B82F6 (blue)</li>
+                            <li>Action Figures: #F97316 (orange)</li>
+                            <li>Baby & Toddler: #8B5CF6 (purple)</li>
+                            <li>Toy Vehicles: #06B6D4 (cyan)</li>
+                            <li>Puzzles: #C77DFF (light purple)</li>
+                            <li>Others: #10B981 (green) - 56% of stock!</li>
+                        </ul>
+                    </li>
+                    <li><strong>Data Labels:</strong> Values in thousands (33.0, 31.5, etc.)</li>
+                    <li><strong>Title:</strong> "Stock Distribution by Category (in thousands)"</li>
+                </ol>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Challenge:</strong> Excel kept showing "Total Stock Units;" prefix in data labels. Solution: Removed "Series Name" from data labels, kept only "Value".
+            </div>
+
+            <h4>3. Top 10 Products by Stock Value - Bar Chart</h4>
+            <div class="step-box">
+                <span class="step-number">3</span>
+                <strong>Create Horizontal Bar Chart:</strong>
+                <p><strong>Why Stock Value instead of Low Stock Alert?</strong></p>
+                <p>Initial plan was "Low Stock Alert" (products with lowest stock), but we realized this isn't actionable without knowing <strong>sales velocity</strong>. A product with 10 units might be:</p>
+                <ul>
+                    <li><strong>Critical</strong> if it sells 100/month → Reorder NOW!</li>
+                    <li><strong>Fine</strong> if it sells 5/month → 2 months of stock</li>
+                </ul>
+                <p>Instead, we showed <strong>"Where is our capital tied up?"</strong> - more useful for procurement decisions.</p>
+
+                <ol>
+                    <li><strong>Data Sheet PivotTable:</strong>
+                        <ul>
+                            <li>Rows: Product_Name</li>
+                            <li>Values: Stock Value</li>
+                            <li>Sort: Largest to Smallest</li>
+                            <li>Filter: Top 10 items</li>
+                        </ul>
+                    </li>
+                    <li><strong>Results:</strong>
+                        <ul>
+                            <li>Eco Art Kit: $53.38K (most capital tied up!)</li>
+                            <li>Pro Board Game: $50.75K</li>
+                            <li>Mini Robot: $50.51K</li>
+                        </ul>
+                    </li>
+                    <li><strong>Chart Formatting:</strong>
+                        <ul>
+                            <li>Gradient bars: Purple (#9B6FED) → Pink (#F76BB7)</li>
+                            <li>Background: #3B82F6 (blue)</li>
+                            <li>White data labels showing value in thousands</li>
+                            <li>Categories reversed (largest on top)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Title:</strong> "Top 10 Products by Stock Value ($K)"</li>
+                </ol>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Final Result:</strong> Procurement dashboard showing inventory health metrics, stock distribution revealing 56% in "Others" (fragmented inventory), and top products by stock value identifying where $426K+ is tied up.
+            </div>
+
+            <h3>📊 Key Insight from Dashboard</h3>
+            <div class="info-box">
+                <strong>💡 Procurement Problem Identified:</strong>
+                <ul>
+                    <li><strong>218 days of inventory</strong> = 7+ months of stock (3x industry standard!)</li>
+                    <li><strong>$3.12M tied up</strong> in inventory (opportunity cost)</li>
+                    <li><strong>56% stock in "Others"</strong> = fragmented, hard to manage</li>
+                    <li><strong>Top 10 products hold $426K</strong> = consider reducing orders for these</li>
+                </ul>
+                <p><strong>Recommendation:</strong> Implement inventory reduction strategy, focus on fast-moving items, consider inter-store transfers.</p>
+            </div>
+        </section>
+
+        <!-- Section 7: Design System -->
+        <section id="design-system">
+            <h2>7️⃣ Design System & Color Palette</h2>
+
+            <h3>🎨 Color Palette Selection</h3>
+            <p>We chose the <strong>"Modern Kids"</strong> palette - professional yet playful, matching toy store branding.</p>
+
+            <h4>Primary Colors</h4>
+            <table>
+                <tr>
+                    <th>Color</th>
+                    <th>Hex Code</th>
+                    <th>Usage</th>
+                </tr>
+                <tr>
+                    <td style="background: #1E3A8A; color: white;">🔵 Blue 900</td>
+                    <td>#1E3A8A</td>
+                    <td>Headers, primary text, navigation</td>
+                </tr>
+                <tr>
+                    <td style="background: #3B82F6; color: white;">🔷 Blue 500</td>
+                    <td>#3B82F6</td>
+                    <td>KPI cards, chart backgrounds, buttons</td>
+                </tr>
+                <tr>
+                    <td style="background: #8B5CF6; color: white;">🟣 Purple 500</td>
+                    <td>#8B5CF6</td>
+                    <td>Secondary accents, chart elements</td>
+                </tr>
+                <tr>
+                    <td style="background: #F9A8D4; color: black;">🌸 Pink 300</td>
+                    <td>#F9A8D4</td>
+                    <td>Highlights, gradients, emphasis</td>
+                </tr>
+            </table>
+
+            <h4>Gradient Combinations</h4>
+            <ul>
+                <li><strong>Header:</strong> Blue (#2B9FED) → Purple (#9B6FED) → Pink (#F76BB7)</li>
+                <li><strong>KPI Cards:</strong> Solid colors from palette</li>
+                <li><strong>Bar Charts:</strong> Purple (#9B6FED) → Pink (#F76BB7)</li>
+            </ul>
+
+            <h3>📝 Typography System</h3>
+            <table>
+                <tr>
+                    <th>Element</th>
+                    <th>Font</th>
+                    <th>Size</th>
+                    <th>Weight</th>
+                </tr>
+                <tr>
+                    <td>Dashboard Title</td>
+                    <td>Segoe UI</td>
+                    <td>20-24pt</td>
+                    <td>Bold</td>
+                </tr>
+                <tr>
+                    <td>Chart Titles</td>
+                    <td>Segoe UI</td>
+                    <td>14-16pt</td>
+                    <td>Bold</td>
+                </tr>
+                <tr>
+                    <td>KPI Labels</td>
+                    <td>Segoe UI</td>
+                    <td>10-12pt</td>
+                    <td>Semibold</td>
+                </tr>
+                <tr>
+                    <td>KPI Values</td>
+                    <td>Segoe UI</td>
+                    <td>18-24pt</td>
+                    <td>Bold</td>
+                </tr>
+                <tr>
+                    <td>Chart Labels</td>
+                    <td>Segoe UI</td>
+                    <td>10pt</td>
+                    <td>Regular</td>
+                </tr>
+            </table>
+
+            <h3>🎯 Design Principles Applied</h3>
+            <ul>
+                <li><strong>Visual Hierarchy:</strong> Logo → Title → KPIs → Charts (decreasing visual weight)</li>
+                <li><strong>Color Consistency:</strong> All elements use palette colors, no random colors</li>
+                <li><strong>White Space:</strong> Adequate spacing between components for readability</li>
+                <li><strong>Rounded Corners:</strong> All shapes use rounded corners for modern feel</li>
+                <li><strong>Minimalism:</strong> Removed unnecessary elements (legends, gridlines, excessive axes)</li>
+                <li><strong>Contrast:</strong> White text on colored backgrounds for readability</li>
+            </ul>
+
+            <h3>📐 Layout Grid</h3>
+            <p><strong>Sales Dashboard Layout:</strong></p>
+            <pre>
+Row 1-5:   [Gradient Header with Logo & Title]
+Row 7-10:  [KPI Card 1] [KPI Card 2] [KPI Card 3] [KPI Card 4]
+Row 12-25: [Line Chart: Monthly Trend] [Bar Chart: Top 10 Products]
+            </pre>
+
+            <p><strong>Procurement Dashboard Layout:</strong></p>
+            <pre>
+Row 1-5:   [Gradient Header with Logo & Title]
+Row 7-10:  [KPI Card 1] [KPI Card 2] [KPI Card 3] [KPI Card 4]
+Row 12-25: [Donut: Stock by Category] [Bar Chart: Top 10 by Value]
+            </pre>
+        </section>
+
+        <!-- Section 8: Insights -->
+        <section id="insights">
+            <h2>8️⃣ Key Insights & Findings</h2>
+
+            <h3>💰 Sales Performance</h3>
+            <div class="success-box">
+                <h4>✅ Strong Financial Health</h4>
+                <ul>
+                    <li><strong>$9.86M revenue</strong> generated from 567K units sold</li>
+                    <li><strong>43.7% profit margin</strong> indicates healthy pricing strategy</li>
+                    <li><strong>Consistent monthly revenue</strong> with minor seasonal fluctuations</li>
+                    <li><strong>Average transaction value:</strong> $40.14 per transaction</li>
+                </ul>
+            </div>
+
+            <h4>🏆 Top Performers</h4>
+            <ul>
+                <li><strong>Best Product:</strong> Mega Board Game ($231,910 revenue)</li>
+                <li><strong>Top 10 products</strong> account for $1.48M (15% of total revenue)</li>
+                <li><strong>Revenue concentration:</strong> Moderate - not too dependent on few products</li>
+            </ul>
+
+            <h3>📦 Inventory Management</h3>
+            <div class="warning-box">
+                <h4>⚠️ Overstock Concerns</h4>
+                <ul>
+                    <li><strong>218 days of inventory</strong> = 7.3 months of stock (Target: 60-90 days)</li>
+                    <li><strong>$3.12M capital tied up</strong> in inventory (31.6% of annual revenue!)</li>
+                    <li><strong>Slow inventory turnover:</strong> 1.67x per year (should be 4-6x for retail)</li>
+                    <li><strong>Stock-to-Sales ratio 59.8%</strong> indicates potential overordering</li>
+                </ul>
+            </div>
+
+            <h4>📊 Stock Distribution</h4>
+            <ul>
+                <li><strong>56% stock in "Others"</strong> category = highly fragmented inventory</li>
+                <li><strong>Top 5 categories</strong> only account for 44% of stock</li>
+                <li><strong>Arts & Crafts</strong> has most stock (32,985 units) but is it selling?</li>
+            </ul>
+
+            <h4>💸 Capital Allocation</h4>
+            <ul>
+                <li><strong>Top 10 products hold $426K</strong> in stock value (13.6% of total)</li>
+                <li><strong>Eco Art Kit:</strong> $53.4K tied up (highest single product)</li>
+                <li><strong>Question:</strong> Are these high-value stocks justified by sales velocity?</li>
+            </ul>
+
+            <h3>🎯 Strategic Recommendations</h3>
+            <div class="info-box">
+                <h4>💡 Action Plan</h4>
+                <ol>
+                    <li><strong>Reduce Ordering Cycles:</strong>
+                        <ul>
+                            <li>Target: Reduce days of inventory from 218 → 90 days</li>
+                            <li>Action: Decrease purchase orders by 60% over next 6 months</li>
+                        </ul>
+                    </li>
+                    <li><strong>Optimize Product Mix:</strong>
+                        <ul>
+                            <li>Focus on fast-moving, high-margin items (e.g., Mega Board Game)</li>
+                            <li>Reduce orders for slow-moving high-value items</li>
+                        </ul>
+                    </li>
+                    <li><strong>Inter-Store Transfers:</strong>
+                        <ul>
+                            <li>Analyze stock distribution across 120 stores</li>
+                            <li>Transfer excess inventory from overstocked to understocked locations</li>
+                        </ul>
+                    </li>
+                    <li><strong>Inventory Clearance:</strong>
+                        <ul>
+                            <li>Consider promotions/discounts on high-stock items</li>
+                            <li>Free up $1M+ capital for better uses</li>
+                        </ul>
+                    </li>
+                    <li><strong>Implement JIT (Just-In-Time):</strong>
+                        <ul>
+                            <li>Move towards demand-driven ordering</li>
+                            <li>Use sales velocity data to inform procurement decisions</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 9: Lessons Learned -->
+        <section id="lessons">
+            <h2>9️⃣ Lessons Learned & Best Practices</h2>
+
+            <h3>💡 Technical Lessons</h3>
+
+            <h4>1. Power Pivot > Regular PivotTables</h4>
+            <div class="info-box">
+                <p><strong>Why?</strong></p>
+                <ul>
+                    <li>In-memory database handles 245K+ rows easily</li>
+                    <li>Relationships eliminate VLOOKUP hell</li>
+                    <li>DAX measures centralized and reusable</li>
+                    <li>Query performance significantly faster</li>
+                </ul>
+            </div>
+
+            <h4>2. DAX vs Excel Formulas</h4>
+            <ul>
+                <li><strong>DAX Advantages:</strong>
+                    <ul>
+                        <li>Context-aware (row context, filter context)</li>
+                        <li>Works across relationships automatically</li>
+                        <li>Single source of truth (measure defined once)</li>
+                        <li>Optimized for large datasets</li>
+                    </ul>
+                </li>
+                <li><strong>Excel Formula Use Cases:</strong>
+                    <ul>
+                        <li>Display formatting (TEXT, ROUND)</li>
+                        <li>Dashboard-specific calculations</li>
+                        <li>Dynamic references to PivotTables (GETPIVOTDATA)</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4>3. Data Modeling is Critical</h4>
+            <p><strong>Star Schema Benefits:</strong></p>
+            <ul>
+                <li>Intuitive for business users</li>
+                <li>Optimized query performance</li>
+                <li>Easy to maintain and extend</li>
+                <li>Clear separation: Facts (transactions) vs Dimensions (attributes)</li>
+            </ul>
+
+            <h4>4. Visualization Design Matters</h4>
+            <ul>
+                <li><strong>Less is More:</strong> Removed gridlines, simplified axes, minimized data labels</li>
+                <li><strong>Color Purpose:</strong> Used consistent palette for brand recognition</li>
+                <li><strong>Chart Type Selection:</strong>
+                    <ul>
+                        <li>Line chart for trends over time</li>
+                        <li>Horizontal bar for rankings/comparisons</li>
+                        <li>Donut for part-to-whole relationships</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>⚠️ Challenges Overcome</h3>
+
+            <h4>Challenge 1: Text Data in Numeric Columns</h4>
+            <div class="warning-box">
+                <p><strong>Problem:</strong> CSV import created text values "1.5" instead of numeric 1.5</p>
+                <p><strong>Impact:</strong> DAX measures returned errors, SUM() didn't work</p>
+                <p><strong>Solution:</strong> Power Query → Transform → Change Data Type → Decimal Number</p>
+                <p><strong>Lesson:</strong> Always validate data types after import!</p>
+            </div>
+
+            <h4>Challenge 2: Polish Excel Number Formatting</h4>
+            <div class="warning-box">
+                <p><strong>Problem:</strong> Polish Excel uses semicolons (;) not commas (,) in formulas</p>
+                <p><strong>Impact:</strong> Custom number formats like <code>#,##0,"K"</code> didn't work</p>
+                <p><strong>Solution:</strong> Used TEXT() and ROUND() functions instead:
+                    <pre>="$"&ROUND(value/1000000,2)&"M"</pre>
+                </p>
+                <p><strong>Lesson:</strong> Regional settings affect formula syntax - be flexible!</p>
+            </div>
+
+            <h4>Challenge 3: Excel Limitations for Complex Dashboards</h4>
+            <div class="info-box">
+                <p><strong>Limitations Encountered:</strong></p>
+                <ul>
+                    <li>Textboxes don't support formulas (used shapes + cells instead)</li>
+                    <li>Limited interactivity (no drill-down without macros)</li>
+                    <li>Manual layout adjustments (no auto-sizing like Power BI)</li>
+                    <li>Chart customization requires multiple steps</li>
+                </ul>
+                <p><strong>Workarounds:</strong></p>
+                <ul>
+                    <li>Layered architecture (Data sheet + Dashboard sheet)</li>
+                    <li>Shapes as backgrounds, cells for dynamic content</li>
+                    <li>GETPIVOTDATA for robust references to PivotTables</li>
+                    <li>Careful planning of dashboard layout grid</li>
+                </ul>
+            </div>
+
+            <h3>🚀 Skills Developed</h3>
+            <ul>
+                <li>✅ <strong>Advanced Excel:</strong> Power Pivot, PivotTables, Advanced Formulas</li>
+                <li>✅ <strong>DAX:</strong> SUMX, DIVIDE, RELATED, context awareness</li>
+                <li>✅ <strong>Data Modeling:</strong> Star Schema, relationships, normalization</li>
+                <li>✅ <strong>Business Intelligence:</strong> KPI definition, metric selection</li>
+                <li>✅ <strong>Data Visualization:</strong> Chart selection, color theory, minimalism</li>
+                <li>✅ <strong>Dashboard Design:</strong> Layout, hierarchy, user experience</li>
+                <li>✅ <strong>Business Analysis:</strong> Interpreting data, generating insights</li>
+                <li>✅ <strong>Problem Solving:</strong> Overcoming technical limitations</li>
+            </ul>
+
+            <h3>📚 Resources & Learning</h3>
+            <ul>
+                <li><strong>Microsoft Power Pivot Documentation</strong> - Official reference</li>
+                <li><strong>DAX Guide</strong> - Comprehensive function reference</li>
+                <li><strong>SQLBI.com</strong> - Advanced DAX patterns and best practices</li>
+                <li><strong>Excel Campus</strong> - Power Pivot tutorials</li>
+                <li><strong>Dashboard Design Principles</strong> - Stephen Few, Edward Tufte</li>
+            </ul>
+
+            <h3>🎯 Next Steps & Improvements</h3>
+            <div class="success-box">
+                <h4>Future Enhancements</h4>
+                <ol>
+                    <li><strong>Add Interactivity:</strong>
+                        <ul>
+                            <li>Slicers for date range, category, store selection</li>
+                            <li>Dynamic filtering across dashboards</li>
+                        </ul>
+                    </li>
+                    <li><strong>Expand Analysis:</strong>
+                        <ul>
+                            <li>Store performance comparison</li>
+                            <li>Geographic analysis (sales by region)</li>
+                            <li>Customer segmentation (if customer data available)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Add Forecasting:</strong>
+                        <ul>
+                            <li>Sales trend prediction</li>
+                            <li>Inventory optimization models</li>
+                        </ul>
+                    </li>
+                    <li><strong>Migrate to Power BI:</strong>
+                        <ul>
+                            <li>Enhanced interactivity</li>
+                            <li>Real-time data refresh</li>
+                            <li>Mobile-friendly dashboards</li>
+                            <li>Easier sharing and collaboration</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2>🎉 Conclusion</h2>
+            <p>This project successfully demonstrated that <strong>Excel can be a powerful Business Intelligence platform</strong> when combined with Power Pivot and DAX. We transformed 245,800+ raw transaction records into two professional dashboards that provide actionable insights for both sales and procurement teams.</p>
+
+            <h3>Key Achievements:</h3>
+            <ul>
+                <li>✅ Built enterprise-grade data model with Star Schema architecture</li>
+                <li>✅ Created 10 reusable DAX measures for business metrics</li>
+                <li>✅ Designed professional dashboards with Power BI-level quality</li>
+                <li>✅ Generated real business insights (identified $3.12M overstock issue!)</li>
+                <li>✅ Documented complete process for portfolio and learning</li>
+            </ul>
+
+            <div class="success-box">
+                <p style="text-align: center; font-size: 1.2rem; margin: 0;">
+                    <strong>📊 From Raw Data → Actionable Intelligence → Business Impact</strong>
+                </p>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem;">
+                <strong>Project Repository:</strong> 
+                <a href="https://github.com/mbimarban/toy-store-dashboard" target="_blank" style="color: #3B82F6;">
+                    github.com/mbimarban/toy-store-dashboard
+                </a>
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p><strong>Created by:</strong> mbimarban | <strong>Date:</strong> January 2025</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">Excel Advanced • Power Pivot • DAX • Business Intelligence</p>
+    </footer>
+</body>
+</html>
